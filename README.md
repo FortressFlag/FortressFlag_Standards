@@ -2,6 +2,9 @@
 
 Canonical publication of the FortressFlag SDK wire contracts and cross-SDK test vectors.
 
+> **ADR-nnnn** refers to FortressFlag's internal architecture decision records. The public
+> contract every SDK implements is this repository; decision records are not published.
+
 | What | Where |
 |---|---|
 | Client data-plane contract, v1 | [`contracts/contract-v1.md`](contracts/contract-v1.md) |
@@ -13,8 +16,7 @@ Canonical publication of the FortressFlag SDK wire contracts and cross-SDK test 
 | Evaluation-semantics vectors (ADR-0016) | [`vectors/evaluation.json`](vectors/evaluation.json) |
 | Envelope-signature vectors (ADR-0025) | [`vectors/signing.json`](vectors/signing.json) |
 
-**Ownership:** the contract is owned by
-[`FortressFlag_Backend`](https://github.com/FortressFlag/FortressFlag_Backend) — changes go
+**Ownership:** the contract is owned by `FortressFlag_Backend` — changes go
 through an ADR there (see ADR-0013 for this repo's creation) and are published here. SDK repos
 (`FortressFlag_SDK_ios`, `FortressFlag_SDK_android`, `FortressFlag_SDK_web`,
 `FortressFlag_SDK_go`, `FortressFlag_SDK_node`, `FortressFlag_SDK_python`,
@@ -27,10 +29,10 @@ Docs and vectors only — no implementation code lives here.
 
 | Consumer | Status |
 |---|---|
-| `FortressFlag_SDK_ios` | Shipped |
-| `FortressFlag_SDK_android` | Shipped (v0.1.0, ADR-0013) |
-| `FortressFlag_SDK_web` | Shipped (v0.1.0, ADR-0014) |
-| `FortressFlag_SDK_go` | Shipped (v0.1.0, ADR-0016) |
-| `FortressFlag_SDK_node` | Shipped (v0.1.0, ADR-0020) |
-| `FortressFlag_SDK_python` | Shipped (v0.1.0, ADR-0020) |
-| `FortressFlag_SDK_java` | Shipped (v0.1.0, ADR-0020) |
+| `FortressFlag_SDK_ios` | Shipped (v1.0.0) |
+| `FortressFlag_SDK_android` | Shipped (v1.0.0, ADR-0013) |
+| `FortressFlag_SDK_web` | Shipped (v1.0.0, ADR-0014) |
+| `FortressFlag_SDK_go` | Shipped (v1.0.0, ADR-0016) |
+| `FortressFlag_SDK_node` | Shipped (v1.0.0, ADR-0020) |
+| `FortressFlag_SDK_python` | Shipped (v1.0.0, ADR-0020) |
+| `FortressFlag_SDK_java` | Shipped (v1.0.0, ADR-0020) |

@@ -43,7 +43,7 @@ So the client data plane is a separate contract, described here.
 GET /v1/client/flags?environment=prod
 Authorization: Bearer ffc_prod_<random>
 X-FF-Device: dev_<22 chars base64url>     (sim_ from simulator builds — same body shape)
-X-FF-SDK: ios/0.1.0
+X-FF-SDK: ios/1.0.0
 X-FF-Tags: <unpadded base64url of a JSON object>   (when the device has tags to report)
 Accept: application/json
 If-None-Match: "<etag>"        (when the SDK holds a cached payload)
@@ -74,7 +74,7 @@ The value is **unpadded base64url of a JSON object of string values**, keys sort
 
 ```json
 { "appBuild": "421", "appVersion": "2.1", "cohort": "beta", "osVersion": "26.0",
-  "platform": "ios", "sdkVersion": "0.1.0" }
+  "platform": "ios", "sdkVersion": "1.0.0" }
 ```
 
 Base64url because tag values are free text and header values are not; one header keeps the

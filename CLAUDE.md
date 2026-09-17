@@ -1,10 +1,12 @@
 # FortressFlag_Standards — Agent & Contributor Guide
 
 > **This repo inherits the FortressFlag founding principles.** The canonical, source-of-truth
-> document lives in the backend repo. Read it before making architectural or design decisions:
+> document lives in the backend repo (`FortressFlag_Backend/CLAUDE.md`, the founding document).
+> Read it before making architectural or design decisions.
 >
-> - GitHub: <https://github.com/FortressFlag/FortressFlag_Backend/blob/development/CLAUDE.md>
-> - Local clone: `~/Workspace/FortressFlag_Backend/CLAUDE.md`
+> ADR-nnnn refers to FortressFlag's internal architecture decision records. The public contract
+> every SDK implements is this repository (`FortressFlag_Standards`); decision records are not
+> published.
 >
 > When anything here conflicts with the founding document, the founding document wins.
 > Priority order when in doubt: **Security → Compliance → Efficiency → Cost.**
@@ -35,8 +37,8 @@ their own repos; the backend serves it from its.
 
 - Default branch: `development`. Changes go via PR with review (founding §7.5).
 - **Commits and PRs are authored as FortressFlag, never a personal identity.** Local commits
-  carry `FortressFlag <noreply@fortressflag.com>` (the `~/Workspace/FortressFlag_*` gitconfig
-  include); PRs are opened and merged via the `fortressflag` GitHub App, because GitHub
+  carry `FortressFlag <noreply@fortressflag.com>` (a gitconfig include scoped to the
+  maintainer's FortressFlag clones); PRs are opened and merged via the `fortressflag` GitHub App, because GitHub
   authors a squash commit as the PR opener's account regardless of branch authorship.
 - Backward compatibility on the published contract is **sacred** — we cannot recall a shipped
   SDK (founding §5, §8.3). Additive changes within a version; anything breaking is a new
