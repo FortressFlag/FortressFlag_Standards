@@ -1,0 +1,53 @@
+# Continuous integration for the standards repo.
+#
+# This workflow IS the merge gate (Founding CLAUDE.md §7.5). There is deliberately no
+# implementation code here to test — what can break is a vector file that no longer parses
+# (every SDK ports these as unit tests, so a syntax error here breaks four pipelines at once)
+# or a contract file that quietly disappears while other repos link to it by path.
+#
+# NOTE for whoever adds the branch ruleset: add this job name (`Check`) as a required check
+# *after* this file lands on `development` (docs/compliance/change-management.md in
+# FortressFlag_Backend). Requiring a check that has never reported blocks every merge
+# permanently.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [development]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test vectors parse
+        run: |
+          set -euo pipefail
+          for f in vectors/*.json; do
+            echo "checking $f"
+            python3 -m json.tool "$f" > /dev/null
+          done
+
+      - name: Contract files present
+        # Other repos link to these by path; a rename or deletion here is a cross-repo break,
+        # not a tidy-up.
+        run: |
+          set -euo pipefail
+          for f in contracts/contract-v1.md contracts/contract-v2.md \
+                   contracts/server-contract-v1.md \
+                   contracts/device-identity.md vectors/device-ids.json vectors/buckets.json \
+                   vectors/evaluation.json vectors/signing.json; do
+            test -f "$f" || { echo "::error::$f is missing."; exit 1; }
+          done
+          echo "All contract and vector files present."
